@@ -12,6 +12,9 @@
         <module>MySqlGuide</module>
         <module>SpringCloudAlibaba</module>
         <module>JavaBase</module>
+        <module>markDownTools</module>
+        <module>Nginx</module>
+        <module>Linux</module>
     </modules>
 
     <properties>
