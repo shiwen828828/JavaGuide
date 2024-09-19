@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/CloudAlibaba/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CloudAlibaba/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GitGuide/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GitGuide/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/InstallSoftWare/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/InstallSoftWare/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/JavaBase/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/JavaBase/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Linux/src/main/java" charset="UTF-8" />
@@ -15,6 +11,8 @@
     <file url="file://$PROJECT_DIR$/MySqlGuide/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Nginx/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Nginx/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Redis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringCloudAlibaba/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringCloudAlibaba/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Vue/src/main/java" charset="UTF-8" />
