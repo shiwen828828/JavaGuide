@@ -16,6 +16,7 @@
         <module>Linux</module>
         <module>Vue</module>
         <module>Redis</module>
+        <module>RocketMQ</module>
     </modules>
 
     <properties>
