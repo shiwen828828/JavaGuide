@@ -17,6 +17,7 @@
         <module>Vue</module>
         <module>Redis</module>
         <module>RocketMQ</module>
+        <module>SpringCloud</module>
     </modules>
 
     <properties>
