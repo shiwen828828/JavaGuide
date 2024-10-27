@@ -18,6 +18,7 @@
         <module>Redis</module>
         <module>RocketMQ</module>
         <module>SpringCloud</module>
+        <module>DesignModel</module>
     </modules>
 
     <properties>
