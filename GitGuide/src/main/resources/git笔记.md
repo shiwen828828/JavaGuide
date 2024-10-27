@@ -741,3 +741,24 @@
 
 
 <img src="img/image-20211115154114660.png" alt="image-20211115154114660" style="zoom:67%;" />
+
+### 第七章 GITHUB
+
+#### 第一集 查看当前git 项目连接信息
+
+```
+git remote -v
+```
+
+#### 第二集 修改git项目 远程连接
+
+```
+git remote set-url origin git@github.com:shiwen828828/InternetArchitect.git   
+```
+
+### 第三集 修改git项目 远程连接
+
+```
+git remote add origin git@github.com:shiwen828828/InternetArchitect.git
+```
+
