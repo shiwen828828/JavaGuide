@@ -756,7 +756,7 @@ git remote -v
 git remote set-url origin git@github.com:shiwen828828/InternetArchitect.git   
 ```
 
-### 第三集 修改git项目 远程连接
+#### 第三集 修改git项目 远程连接
 
 ```
 git remote add origin git@github.com:shiwen828828/InternetArchitect.git
