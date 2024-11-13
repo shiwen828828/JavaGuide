@@ -56,6 +56,8 @@ REDIS_CONF=$REDIS_HOME/redis.conf
 echo "Starting Redis..."
 $REDIS_HOME/bin/redis-server $REDIS_CONF &
 
+sleep 3
+
 if [ $? -eq 0 ]; then
     echo "Redis started successfully in the backgroud."
 else
@@ -73,6 +75,8 @@ REDIS_HOME=/opt/software/redis/redis-7.2.0/
 
 echo "Stopping Redis..."
 $REDIS_HOME/bin/redis-cli shutdown
+
+sleep 3
 
 if [ $? -eq 0 ]; then
     echo "Redis stopped successfully."
