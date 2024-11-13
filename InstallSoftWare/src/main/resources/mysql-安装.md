@@ -213,3 +213,14 @@ chmod +x /usr/local/bin/stop_mysql.sh
 启动 MySQL 服务
 
 停止MYSQL 服务
+
+### 15 配置MYSQL 客户端全局登录
+
+```
+vi /etc/profile
+
+export PATH=$PATH:/opt/software/mysql/mysql-8.0.26-linux-glibc2.12-x86_64/bin
+
+source /etc/profile
+```
+
