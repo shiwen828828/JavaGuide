@@ -224,3 +224,14 @@ export PATH=$PATH:/opt/software/mysql/mysql-8.0.26-linux-glibc2.12-x86_64/bin
 source /etc/profile
 ```
 
+### 16 如果远程连接无法成功 要查询一下表;
+
+```
+mysql -uroot -p
+use mysql;
+select host,user from user;
+# 如果user 是root 的host 的值是localhost 要update 成%
+update user set host ='%' where user='root';
+FLUSH PRIVILEGES;
+```
+
