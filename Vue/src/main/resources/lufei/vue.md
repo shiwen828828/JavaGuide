@@ -521,7 +521,7 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
     </div>
     <script src="./vue.js"></script>
     <script>
-      
+
       // 1.创建组件
       // 注意:在组件中这个data必须是一个函数,返回一个对象
       Vue.component("App", {
@@ -1163,9 +1163,7 @@ deactivated() {
 ```
 <body>
     <div id="app">
-        <!-- 3.使用子组件 -->
         <App></App>
-
     </div>
     <script src="./vue.js"></script>
     <script type='module'>
@@ -1246,7 +1244,7 @@ export default  {
                     <h3>{{msg}}</h3>    
                 </div>
             `,
-        })
+        }
 
         const App = {
             data() {
@@ -1559,3 +1557,38 @@ export default  {
 
 </body>
 ```
+
+## 4 单文件组件
+
+在很多Vue项⽬中,我们使⽤ Vue.component 来定义全局组件，紧接着
+⽤ new Vue({ el: '#app '}) 在每个⻚⾯内指定⼀个容器元素。
+这种⽅式在很多中⼩规模的项⽬中运作的很好，在这些项⽬⾥
+JavaScript 只被⽤来加强特定的视图。但当在更复杂的项⽬中，或者
+你的前端完全由 JavaScript 驱动的时候，下⾯这些缺点将变得⾮常明
+显：
+
+1. 全局定义强制要求每个 component 中的命名不得重复
+
+2. 字符串模板 缺乏语法⾼亮，在 HTML 有多⾏的时候，需要⽤到丑陋的\
+
+3. 不⽀持 CSS 意味着当 HTML 和 JavaScript 组件化时，CSS 明显被
+   遗漏
+
+4. 没有构建步骤 限制只能使⽤ HTML 和 ES5 JavaScript, ⽽不能使⽤
+   预处理器，如 Pug (formerly Jade) 和 Babel
+
+⽂件扩展名为 .vue 的 single-file components(单⽂件组件) 为以
+上所有问题提供了解决⽅法，并且还可以使⽤ webpack 或
+Browserify 等构建⼯具。
+
+### 4.1 vue cli3
+
+#### 4.1.1 基本配置
+
+- 安装nodejs
+  
+  保证Node.js8.9或更⾼版本
+  
+  终端中输⼊ node -v ,保证已安装成功
+
+- 
