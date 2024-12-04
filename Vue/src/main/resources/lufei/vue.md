@@ -1585,10 +1585,40 @@ Browserify 等构建⼯具。
 
 #### 4.1.1 基本配置
 
-- 安装nodejs
+- 安装nodejs([Node.js — Download Node.js®](https://nodejs.org/en/download/package-manager))
   
   保证Node.js8.9或更⾼版本
   
   终端中输⼊ node -v ,保证已安装成功
 
-- 
+- 安装淘宝镜像源(http://npm.taobao.org/)
+  
+  ```
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+  ```
+  
+    以后的npm可以⽤cnpm代替
+
+- 安装Vue Cli3脚⼿架
+  
+  ```
+  cnpm install -g @vue/cli
+  ```
+
+- 检查其版本是否正确
+  
+  ```
+  vue --version
+  ```
+
+#### 4.1.2 快速原型开发
+
+使⽤ vue serve 和 vue build 命令对单个 *.vue ⽂件进⾏快速原型
+开发，不过这需要先额外安装⼀个全局的扩展：
+
+```
+1 npm install -g @vue/cli-service-global
+```
+
+ue serve 的缺点就是它需要安装全局依赖，这使得它在不同机器上
+的⼀致性不能得到保证。因此这只适⽤于快速原型开发。
