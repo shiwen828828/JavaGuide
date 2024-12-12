@@ -20,6 +20,7 @@
         <module>SpringCloud</module>
         <module>DesignModel</module>
         <module>Docker</module>
+        <module>mybatis</module>
     </modules>
 
     <properties>
