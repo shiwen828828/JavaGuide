@@ -24,14 +24,14 @@
 ## 3 vue起步
 
 * 1:引包
-
+  
   ```
       <!-- 1.引包 -->
       <script src="./vue.js"></script>
   ```
 
 * 2:启动
-
+  
   ```
   new Vue({
    el:'#app',//⽬的地
@@ -87,7 +87,7 @@
             }
         });
         console.log(vm.msg);
-       
+
     </script>
 </body>
 ```
@@ -105,7 +105,7 @@
 * v-text:元素的textContent属性,必须是双标签 跟{{ }}效果 是⼀样的 使⽤较少
 
 * v-html: 元素的innerHTML
-
+  
   ```
   <body>
       <div id='app'>
@@ -144,7 +144,7 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
 <body>
     <div id='app'>
         <div v-if = "isShow">
-            显示
+            显示    
         </div>
         <div v-else>
             隐藏
@@ -299,7 +299,7 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
                 checkedNames: []
             },
             methods: {
-            
+
             },
         })
     </script>
@@ -328,14 +328,14 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
                     if(newV === '100'){
                         console.log('hello');
                     }
-                    
+
                 },
                 // 深度监视： Object |Array
                 "stus":{
                     deep:'true',
                     handler:function(newV,oldV){
                         console.log(newV[0].name);
-                        
+
                     }
                 }
             }
@@ -409,7 +409,7 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
                 if (this.content) {
                     console.log(this.content);
                 }
-                   
+
                }
             },
             computed: {
@@ -475,50 +475,38 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
 使⽤局部组件的打油诗: 建⼦ 挂⼦ ⽤⼦
 
 ```
-<script>
-        // 使用局部组件的打油诗: 建子 挂子 用子
-        // 1.创建组件
-        // 注意:在组件中这个data必须是一个函数,返回一个对象
-        const App = {
-            data() {
-                return {
-                    msg: '我是App组件'
-                }
-            },
-            components: {
-                Vcontent
-            },
-            template: `
-                <div>
-                    <Vheader></Vheader>
-                    <div>
-                        <Vaside />  
-                        <Vcontent />
-                    </div>
-                </div>
-            `,
-            methods: {
-                handleClick() {
-                    this.msg = '学习局部组件';
-                }
+<body>
+    <div id="app">
+      <!-- 3 使用组件 -->
+      <App></App>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      // 使用局部组件的打油诗: 建子 挂子 用子
+      // 1.创建组件
+      // 注意:在组件中这个data必须是一个函数,返回一个对象
+      const App = {
+        data() {
+          return {
+            msg: "我是App组件",
+          };
+        },
+        template: `
+        <div>
+          <h1>{{ msg }}</h1>
+        </div>
+        `,
+      };
 
-            },
-            computed: {
-
-            }
-        }
-        new Vue({
-            el: '#app',
-            data: {
-
-            },
-            components: {
-                // 2.挂载子组件
-                App
-            }
-
-        })
+      // 2. 创建 Vue 实例并挂载
+      const vm = new Vue({
+        el: "#app",
+        components: {
+          App,
+        },
+      });
     </script>
+  </body>
 ```
 
 ### 1.3 全局组件
@@ -526,13 +514,35 @@ v-if 是“真正”的条件渲染，因为它会确保在切换过程中条 �
 通过 Vue.component(组件名,{}) 创建全局组件,此时该全局组件可以在 任意模板(template)中使⽤
 
 ```
-Vue.component('Child',{
- template:`
- <div>
- <h3>我是⼀个⼦组件</h3>
- </div>
-`
-})
+<body>
+    <div id="app">
+      <!-- 2 使用组件 -->
+      <App></App>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+
+      // 1.创建组件
+      // 注意:在组件中这个data必须是一个函数,返回一个对象
+      Vue.component("App", {
+        data() {
+          return {
+            msg: "我是App组件",
+          };
+        },
+        template: `
+        <div>
+          <h1>{{ msg }}</h1>
+        </div>
+        `,
+      });
+
+      // 2. 创建 Vue 实例并挂载
+      const vm = new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
 ```
 
 ### 1.4 组件通信
@@ -548,56 +558,50 @@ Vue.component('Child',{
 * 在⽗组件绑定⾃定义的属性
 
 ```
-   <div id="app">
-        <!-- 3.使用子组件 -->
-        <App></App>
-
+<body>
+    <div id="app">
+      <!-- 2 使用组件 -->
+      <App></App>
     </div>
     <script src="./vue.js"></script>
     <script>
-        // 全局组件
+      // 全局组件
 
-        // 父传子:通过prop来进行通信
+      // 父传子:通过prop来进行通信
 
-        // 1.在子组件中声明props接收在父组件挂载的属性
-        // 2.可以在子组件的template中任意使用
-        // 3.在父组件绑定自定义的属性
-        Vue.component('Child',{
-            template:`
-                <div>
-                    <h3>我是一个子组件</h3>   
-                    <h4>{{childData}}</h4>
-                </div>
-            `,
-            props:['childData']
-        })
+      // 1.在子组件中声明props接收在父组件挂载的属性
+      // 2.可以在子组件的template中任意使用
+      // 3.在父组件绑定自定义的属性
+      Vue.component("Children", {
+        template: `
+        <div>
+          <h3>子组件</h3>
+          <h1>父组件传过来的值: {{ childData }}</h1>
+        </div>
+        `,
+        props: ["childData"],
+      });
 
-        const App = {
-            data() {
-                return {
-                    msg: '我是父组件传进来的值'
-                }
-            },
-            template: `
-                <div>
-                    <Child :childData = 'msg'></Child>
-                </div>
-            `,
-            computed: {
+      Vue.component("App", {
+        data() {
+          return {
+            msg: "我是App组件",
+          };
+        },
+        template: `
+        <div>
+          <h1>{{ msg }}</h1>
+          <Children :childData="msg"></Children>
+        </div>
+        `,
+      });
 
-            }
-        }
-        new Vue({
-            el: '#app',
-            data: {
-
-            },
-            components: {
-                // 2.挂载子组件
-                App
-            }
-        })
+      // 2. 创建 Vue 实例并挂载
+      const vm = new Vue({
+        el: "#app",
+      });
     </script>
+  </body>
 ```
 
 #### 1.4.2 ⼦传⽗
@@ -610,74 +614,61 @@ Vue.component('Child',{
 * 在⼦组件中 触发原⽣的事件 在事件函数通过this.$emit触发⾃定 义的事件
 
 ```
-<div id="app">
-        <!-- 3.使用子组件 -->
-        <App></App>
-
+<body>
+    <div id="app">
+      <!-- 2 使用组件 -->
+      <App></App>
     </div>
     <script src="./vue.js"></script>
     <script>
-        // 全局组件
+      // 全局组件
+      // 子往父传值
+      // 在父组件中 子组件上绑定自定义事件
+      // 在子组件中 触发原生的事件 在事件函数通过this.$emit触发自定义的事件
+      Vue.component("Children", {
+        template: `
+          <div>
+            <h3>我是一个子组件</h3>   
+            <input type="text" @input = 'handleInput'/>
+        </div>
+        `,
+        props: ["childData"],
+        methods: {
+          handleInput(e) {
+            const val = e.target.value;
+            // 触发自定义事件
+            this.$emit("inputHandler", val);
+          },
+        },
+      });
 
-        // 子往父传值
+      Vue.component("App", {
+        data() {
+          return {
+            msg: "我是App组件",
+            newVal: "",
+          };
+        },
+        template: `
+        <div>
+          <h1>{{ msg }}</h1>
+          <Children @inputHandler = "input"></Children>
+          <h3>{{newVal }}</h3>
+        </div>
+        `,
+        methods: {
+          input(val) {
+            this.newVal = val;
+          },
+        },
+      });
 
-        // 在父组件中 子组件上绑定自定义事件
-        // 在子组件中 触发原生的事件 在事件函数通过this.$emit触发自定义的事件
-        Vue.component('Child', {
-            template: `
-                <div>
-                    <h3>我是一个子组件</h3>   
-                    <h4>{{childData}}</h4>
-                    <input type="text" @input = 'handleInput'/>
-                </div>
-            `,
-            props: ['childData'],
-            methods:{
-                handleInput(e){
-                    const val = e.target.value;
-
-                    this.$emit('inputHandler',val);
-                }
-            },
-        })
-
-        const App = {
-            data() {
-                return {
-                    msg: '我是父组件传进来的值',
-                    newVal:''
-                }
-            },
-            methods:{
-                input(newVal){
-                    // console.log(newVal);
-                    this.newVal = newVal;
-                }
-            },
-            template: `
-                <div>
-                    <div class='father'>
-                        数据:{{newVal}}
-                    </div>
-                    <Child :childData = 'msg' @inputHandler = 'input'></Child>
-                </div>
-            `,
-            computed: {
-
-            }
-        }
-        new Vue({
-            el: '#app',
-            data: {
-
-            },
-            components: {
-                // 2.挂载子组件
-                App
-            }
-
-        })
+      // 2. 创建 Vue 实例并挂载
+      const vm = new Vue({
+        el: "#app",
+      });
     </script>
+  </body>
 ```
 
 #### 1.4.3 平⾏组件
@@ -717,13 +708,13 @@ Vue.component('Child',{
         Vue.component('A', {
             data() {
                 return {
-                    
+
                 }
             },
             template: `
                 <div>
                  <button @click='handleClick'>加入购物车</button> 
-                    
+
                 </div>
             `,
             methods:{
@@ -766,27 +757,16 @@ Vue.component('Child',{
 
 #### 1.4.4 其它组件通信⽅式
 
-**⽗组件 provide来提供变量,然后再⼦组件中通过inject来注⼊变量.⽆ 论组件嵌套多深**
+**⽗组件 provide来提供变量,然后再⼦组件中通过inject来注⼊变量.⽆论组件嵌套多深**
 
 ```
 <body>
     <div id="app">
         <!-- 3.使用子组件 -->
         <App></App>
-
     </div>
     <script src="./vue.js"></script>
     <script>
-       
-        // 插槽 留坑
-        // props 验证规则
-        // 组件的生命周期
-        // UI库 element-ui
-        // **** 如何设计组件? *****
-        // provide
-        // inject
-        // 父组件 provide来提供变量,然后再子组件中通过inject来注入变量.无论组件嵌套多深
-        // 中央事件总线 bus
         Vue.component('B', {
             data() {
                 return {
@@ -796,7 +776,7 @@ Vue.component('Child',{
             inject:['msg'],
             created(){
                 console.log(this.msg);
-                
+
             },
             template: `
                 <div>
@@ -815,8 +795,8 @@ Vue.component('Child',{
                 // console.log(this.$parent.$parent);
                 // console.log(this.$children);
                 console.log(this);
-                
-                
+
+
             },
             template: `
                 <div>
@@ -873,7 +853,7 @@ Vue.component('Child',{
     </div>
     <script src="./vue.js"></script>
     <script>
-        
+
         Vue.component('MBtn',{
             template:`
                 <button>
@@ -888,7 +868,7 @@ Vue.component('Child',{
                     title: "老爹"
                 }
             },
-           
+
             template: `
                 <div>
                     <m-btn><a href="#">登录</a></m-btn>
@@ -949,13 +929,13 @@ Vue.component('Child',{
                              提交
                          </template>
                      </m-btn>
-                    
+
                     <m-btn>
                         <template slot='login'>
                             <a href="#">登录</a>
                         </template>
                     </m-btn>
-                   
+
                     <m-btn>
                         <template slot='register'>
                             注册
@@ -1010,10 +990,10 @@ Vue.component('Child',{
         <ul>
             <li v-for='item in todos' :key='item.id'>
                 <slot :itemValue = 'item'>
-                   
+
                 </slot>
                  {{item.title}}
-               
+
             </li>
         </ul>
         `
@@ -1048,11 +1028,11 @@ Vue.component('Child',{
                 todoList
             },
             template: `
-            	  <todoList :todos='todoList'>
+                  <todoList :todos='todoList'>
                      <template v-slot='data'>
                         <input type="checkbox" v-model='data.itemValue.isComplate' />
                     </template>
-            	  </todoList>
+                  </todoList>
         `,
         }
         new Vue({
@@ -1183,9 +1163,7 @@ deactivated() {
 ```
 <body>
     <div id="app">
-        <!-- 3.使用子组件 -->
         <App></App>
-
     </div>
     <script src="./vue.js"></script>
     <script type='module'>
@@ -1254,7 +1232,7 @@ export default  {
     </div>
     <script src="./vue.js"></script>
     <script>
-        
+
         Vue.component('Test', {
             data() {
                 return {
@@ -1266,7 +1244,7 @@ export default  {
                     <h3>{{msg}}</h3>    
                 </div>
             `,
-        })
+        }
 
         const App = {
             data() {
@@ -1280,7 +1258,7 @@ export default  {
                 // 加载页面,自动获取焦点
                 this.$refs.input.focus();
                 console.log(this.$refs.test);
-                
+
             },
             components: {},
             template: `
@@ -1330,7 +1308,7 @@ export default  {
         Vue.nextTick(()=>{
            console.log(vm.$el.textContent); 
         })
-        
+
     </script>
 </body>
 ```
@@ -1375,7 +1353,7 @@ export default  {
                 show() {
                     this.isShow = true; //弹窗组件展示
                     console.log(this.name);
-                    
+
                 }
             },
         }
@@ -1410,7 +1388,7 @@ export default  {
 </body>
 ```
 
-###  3.5 对象变更检测注意事项
+### 3.5 对象变更检测注意事项
 
 由于JavaScript的限制,Vue不能检测对象属性的添加和删除 对于已经创建的实例,Vue不允许动态添加根级别的响应式属性.但是,可 以通过 Vue.set(object,key,value) ⽅法向嵌套独享添加响应式属性
 
@@ -1435,7 +1413,7 @@ export default  {
                     // Vue.$set(object,key,value)添加响应式属性
                     // this.user.age = 20;
                     // this.$set(this.user,'age',20);
-                    
+
                     // 添加多个响应式属性
                     this.user = Object.assign({},this.user,{
                         age:20,
@@ -1490,11 +1468,11 @@ export default  {
             },
             created(){
                 console.log(1111);
-                
+
             },
             mixins:[myMixin]
         })
-    
+
     </script>
 </body>
 ```
@@ -1517,7 +1495,7 @@ export default  {
         Vue.mixin({
 
         })
-        
+
          */
         const toggleShow = {
             data() {
@@ -1580,3 +1558,67 @@ export default  {
 </body>
 ```
 
+## 4 单文件组件
+
+在很多Vue项⽬中,我们使⽤ Vue.component 来定义全局组件，紧接着
+⽤ new Vue({ el: '#app '}) 在每个⻚⾯内指定⼀个容器元素。
+这种⽅式在很多中⼩规模的项⽬中运作的很好，在这些项⽬⾥
+JavaScript 只被⽤来加强特定的视图。但当在更复杂的项⽬中，或者
+你的前端完全由 JavaScript 驱动的时候，下⾯这些缺点将变得⾮常明
+显：
+
+1. 全局定义强制要求每个 component 中的命名不得重复
+
+2. 字符串模板 缺乏语法⾼亮，在 HTML 有多⾏的时候，需要⽤到丑陋的\
+
+3. 不⽀持 CSS 意味着当 HTML 和 JavaScript 组件化时，CSS 明显被
+   遗漏
+
+4. 没有构建步骤 限制只能使⽤ HTML 和 ES5 JavaScript, ⽽不能使⽤
+   预处理器，如 Pug (formerly Jade) 和 Babel
+
+⽂件扩展名为 .vue 的 single-file components(单⽂件组件) 为以
+上所有问题提供了解决⽅法，并且还可以使⽤ webpack 或
+Browserify 等构建⼯具。
+
+### 4.1 vue cli3
+
+#### 4.1.1 基本配置
+
+- 安装nodejs([Node.js — Download Node.js®](https://nodejs.org/en/download/package-manager))
+  
+  保证Node.js8.9或更⾼版本
+  
+  终端中输⼊ node -v ,保证已安装成功
+
+- 安装淘宝镜像源(http://npm.taobao.org/)
+  
+  ```
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+  ```
+  
+    以后的npm可以⽤cnpm代替
+
+- 安装Vue Cli3脚⼿架
+  
+  ```
+  cnpm install -g @vue/cli
+  ```
+
+- 检查其版本是否正确
+  
+  ```
+  vue --version
+  ```
+
+#### 4.1.2 快速原型开发
+
+使⽤ vue serve 和 vue build 命令对单个 *.vue ⽂件进⾏快速原型
+开发，不过这需要先额外安装⼀个全局的扩展：
+
+```
+1 npm install -g @vue/cli-service-global
+```
+
+ue serve 的缺点就是它需要安装全局依赖，这使得它在不同机器上
+的⼀致性不能得到保证。因此这只适⽤于快速原型开发。
