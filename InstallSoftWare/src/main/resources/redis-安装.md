@@ -91,3 +91,20 @@ fi
 chmod +x start_redis.sh stop_redis.sh
 ```
 
+### 5 外部访问
+
+#### 5.1 修改redis..conf 的bind 属性
+
+```
+bind 0.0.0.0
+protected-mode yes
+```
+
+#### 5.2 放开reids 的6379的防火墙端口
+
+```
+sudo firewall-cmd --list-ports
+sudo firewall-cmd --zone=public --add-port=6379/tcp --permanent
+sudo firewall-cmd --reload
+```
+
